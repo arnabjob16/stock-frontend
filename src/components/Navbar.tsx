@@ -1,24 +1,25 @@
 import { useState } from 'react';
+import useAuth from '../hooks/useAuth';
 
 
 
 
   const Navbar = () =>{
-    const [isProfileDropdownOpen, setProfileDropdownOpen] = useState(false);
+    const { logout } = useAuth();
+    
     const [isMessageDropdownOpen, setMessageDropdownOpen] = useState(false);
     const [isNotificationDropdownOpen, setNotificationDropdownOpen] = useState(false);
 
-    const toggleProfileDropdown = () => setProfileDropdownOpen(!isProfileDropdownOpen);
     const toggleMessageDropdown = () => setMessageDropdownOpen(!isMessageDropdownOpen);
     const toggleNotificationDropdown = () => setNotificationDropdownOpen(!isNotificationDropdownOpen);
 
     return (
       <nav className="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-          <a className="navbar-brand brand-logo" href="index.html">
+          <a className="navbar-brand brand-logo" href="javascript:void(0);">
             <img src="/assets/images/logo.png" alt="logo" />
           </a>
-          <a className="navbar-brand brand-logo-mini" href="index.html">
+          <a className="navbar-brand brand-logo-mini" href="javascript:void(0);">
             <img src="/assets/images/logo.png" alt="logo" />
           </a>
         </div>
@@ -27,42 +28,9 @@ import { useState } from 'react';
             <span className="mdi mdi-menu"></span>
           </button>
 
-          
-
           <ul className="navbar-nav navbar-nav-right">
-            {/* Profile Dropdown */}
-            <li className="nav-item nav-profile dropdown">
-              <a className="nav-link dropdown-toggle" id="profileDropdown" href="#" onClick={toggleProfileDropdown}>
-                <div className="nav-profile-img">
-                  <img src="assets/images/faces/face1.jpg" alt="image" />
-                  <span className="availability-status online"></span>
-                </div>
-                <div className="nav-profile-text">
-                  <p className="mb-1 text-black">David Greymaax</p>
-                </div>
-              </a>
-              {isProfileDropdownOpen && (
-                <div className="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                  <a className="dropdown-item" href="#">
-                    <i className="mdi mdi-cached me-2 text-success"></i> Activity Log
-                  </a>
-                  <div className="dropdown-divider"></div>
-                  <a className="dropdown-item" href="#">
-                    <i className="mdi mdi-logout me-2 text-primary"></i> Signout
-                  </a>
-                </div>
-              )}
-            </li>
-
-            {/* Fullscreen Button */}
-            <li className="nav-item d-none d-lg-block full-screen-link">
-              <a className="nav-link">
-                <i className="mdi mdi-fullscreen" id="fullscreen-button"></i>
-              </a>
-            </li>
-
             {/* Message Dropdown */}
-            <li className="nav-item dropdown">
+            {/* <li className="nav-item dropdown">
               <a className="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" onClick={toggleMessageDropdown}>
                 <i className="mdi mdi-email-outline"></i>
                 <span className="count-symbol bg-warning"></span>
@@ -94,10 +62,10 @@ import { useState } from 'react';
                   <h6 className="p-3 mb-0 text-center">4 new messages</h6>
                 </div>
               )}
-            </li>
+            </li> */}
 
             {/* Notification Dropdown */}
-            <li className="nav-item dropdown">
+            {/* <li className="nav-item dropdown">
               <a className="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" onClick={toggleNotificationDropdown}>
                 <i className="mdi mdi-bell-outline"></i>
                 <span className="count-symbol bg-danger"></span>
@@ -133,19 +101,12 @@ import { useState } from 'react';
                   <h6 className="p-3 mb-0 text-center">See all notifications</h6>
                 </div>
               )}
-            </li>
+            </li> */}
 
             {/* Logout Button */}
             <li className="nav-item nav-logout d-none d-lg-block">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="javascript:void(0)" onClick={logout}>
                 <i className="mdi mdi-power"></i>
-              </a>
-            </li>
-
-            {/* Settings Button */}
-            <li className="nav-item nav-settings d-none d-lg-block">
-              <a className="nav-link" href="#">
-                <i className="mdi mdi-format-line-spacing"></i>
               </a>
             </li>
           </ul>
