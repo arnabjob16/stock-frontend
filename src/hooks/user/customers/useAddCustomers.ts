@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { customersAdd } from "../services/userApi";
+import { userAdd } from "../../../services/userApi";
 import { toast } from "react-toastify";
-import useAuth from "./useAuth";
+import useAuth from "../../useAuth";
 import { useNavigate  } from "react-router-dom";
-import { validateUserForm } from "../utils/validations/userValidation";
+import { validateUserForm } from "../../../utils/validations/userValidation";
 
 export const useAddCustomers = () => {
   const navigate = useNavigate(); 
@@ -16,7 +16,7 @@ export const useAddCustomers = () => {
     username: "",
     gst_number: "",
     phone: "",
-    roles: "shopkeeper",
+    roles: "customer",
     address: "",
     image_path: "",
     image: null as File | null,
@@ -66,7 +66,7 @@ export const useAddCustomers = () => {
     });
   
     try {
-      const res = await customersAdd(token, form);
+      const res = await userAdd(token, form);
       if(res.status == "success") {
         toast.success(res.data.message);
         navigate(-1);

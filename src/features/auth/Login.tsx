@@ -28,7 +28,7 @@ const Login: React.FC = () => {
       if (response && response.status === 200 && response.data?.token) {
         setErrorMessage("");
         console.log("Logged in successfully:", response.data.token);
-        login(response.data.user.toString(), response.data.token.toString());
+        login(JSON.stringify(response.data.user), response.data.token.toString());
         navigate("/dashboard");
       } else {
         setErrorMessage(response?.data?.message);
@@ -53,9 +53,11 @@ const Login: React.FC = () => {
       <div className="row">
         <div className="col-md-6 col-lg-4 mx-auto">
           <div className="card shadow-lg p-4">
+            <div className='mx-4 px-4'>
+              <img src="/assets/images/logo.png" alt="logo" className='img-fluid'/>
+            </div>            
             <div className="card-body">
               {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
-              
               <h3 className="text-center">Login</h3>
 
               <form onSubmit={handleSubmit(onSubmit)}>

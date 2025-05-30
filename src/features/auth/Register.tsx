@@ -30,6 +30,9 @@ const Register: React.FC = () => {
       <div className="row">
         <div className="col-md-6 col-lg-4 mx-auto">
           <div className="card shadow-lg p-4">
+          <div className='mx-4 px-4'>
+              <img src="/assets/images/logo.png" alt="logo" className='img-fluid'/>
+            </div>   
             <div className="card-body">
               <h3 className="text-center">Register</h3>
 

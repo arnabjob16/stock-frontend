@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
-import { customerList, customersDelete } from "../services/userApi";
+import { userList, userDelete } from "../../../services/userApi";
 import { toast } from "react-toastify";
-import useAuth from "./useAuth";
-import { Customer } from "../types/customers.types";
+import useAuth from "../../useAuth";
+import { User } from "../../../types/users.types";
 
-export const useCustomers = () => {
+export const useSuppliers = () => {
   const { token } = useAuth();
-  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [suppliers, setSuppliers] = useState<User[]>([]);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [loading, setLoading] = useState(false);
 
-  const fetchCustomers = async (page = 1, search = "") => {
+  const fetchSuppliers = async (page = 1, search = "") => {
     setLoading(true);
     try {
-      const res = await customerList(token, page, search);
-      setCustomers(res.data.data);
+      const res = await userList(token, page, search, "supplier");
+      setSuppliers(res.data.data);
       setTotalPages(res.data.totalPages);
     } catch (err) {
       console.error(err);
@@ -23,12 +23,12 @@ export const useCustomers = () => {
     setLoading(false);
   };
 
-  const deleteCustomers = async (ids: string[]) => {
+  const deleteSuppliers = async (ids: string[]) => {
     try {
-      const res = await customersDelete(token, ids);
+      const res = await userDelete(token, ids);
       if(res.status == "success") {
         toast.success(res.data.message);
-        fetchCustomers();
+        fetchSuppliers();
       }
       else{
         toast.error(res.data.message);
@@ -40,8 +40,8 @@ export const useCustomers = () => {
   };
 
   useEffect(() => {
-    fetchCustomers();
+    fetchSuppliers();
   }, [token]);
 
-  return { customers, totalPages, fetchCustomers, deleteCustomers, loading };
+  return { suppliers, totalPages, fetchSuppliers, deleteSuppliers, loading };
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import Register from "../features/auth/Register"; // Import Login Component
+import Register from "../../features/auth/Register"; // Import Login Component
 
 const RegisterPage: React.FC = () => {
   return (

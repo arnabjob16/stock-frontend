@@ -1,18 +1,18 @@
-import FormInput from "../../features/common/FormInput";
-import CustomersHeader from "../../features/user/CustomersHeader";
-import FormSelect from "../../features/common/FormSelect";
-import { useEditCustomers } from "../../hooks/useEditCustomers";
-import Loading from "../../features/common/Loading";
-import Button from "../../features/common/Button";
-import FileUpload from "../../features/common/FileUpload";
+import FormInput from "../../../features/common/FormInput";
+import SuppliersHeader from "../../../features/user/suppliers/SuppliersHeader";
+import FormSelect from "../../../features/common/FormSelect";
+import { useAddSuppliers } from "../../../hooks/user/suppliers/useAddSuppliers";
+import Loading from "../../../features/common/Loading";
+import Button from "../../../features/common/Button";
+import FileUpload from "../../../features/common/FileUpload";
 
-const CustomersEdit = () => {
-  const { formData, handleChange, handleSubmit, handleCancel, handleImageChange, errors, loading, buttonLoading} = useEditCustomers();
+const SuppliersAdd = () => {
+  const { formData, handleChange, handleSubmit, handleCancel, handleImageChange, errors, loading, buttonLoading} = useAddSuppliers();
 
   return (
     <div className="content-wrapper">
-      <CustomersHeader
-        title={`User`}
+      <SuppliersHeader
+        title={`Supplier`}
         icon={`user`}
         showSearch={false} 
         showDropdown={false} 
@@ -23,7 +23,7 @@ const CustomersEdit = () => {
           <div className="card">
             <div className="card-body">
               {loading?< Loading />:
-                <form onSubmit={handleSubmit} className="forms-sample row">
+                <form onSubmit={handleSubmit} className="forms-sample row" autoComplete="off">
                   <FormInput
                       label=""
                       id="id"
@@ -83,18 +83,7 @@ const CustomersEdit = () => {
                       />
                     </div>
                   </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <FormInput
-                        label="GST Number"
-                        id="gst_number"
-                        placeholder="GST Number"
-                        value={formData.gst_number}
-                        onChange={handleChange}
-                        error={errors.gst_number}
-                      />
-                    </div>
-                  </div>
+                 
                   <div className="row">
                     <div className="col-md-6">
                       <FormInput
@@ -140,13 +129,13 @@ const CustomersEdit = () => {
                       <FileUpload
                         label="Upload Profile Picture"
                         id="image"
-                        value={formData.image_path}
                         accept="image/*"
                         onChange={handleImageChange}
                         error={errors.image}
                       />
                     </div>
                   </div>
+                  
                   <div className="col-12 mt-3">
                     <Button
                         type="submit"
@@ -173,4 +162,4 @@ const CustomersEdit = () => {
   );
 };
 
-export default CustomersEdit;
+export default SuppliersAdd;

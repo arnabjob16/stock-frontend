@@ -1,18 +1,18 @@
-import FormInput from "../../features/common/FormInput";
-import CustomersHeader from "../../features/user/CustomersHeader";
-import FormSelect from "../../features/common/FormSelect";
-import { useAddCustomers } from "../../hooks/useAddCustomers";
-import Loading from "../../features/common/Loading";
-import Button from "../../features/common/Button";
-import FileUpload from "../../features/common/FileUpload";
+import FormInput from "../../../features/common/FormInput";
+import CustomersHeader from "../../../features/user/customers/CustomersHeader";
+import FormSelect from "../../../features/common/FormSelect";
+import { useEditCustomers } from "../../../hooks/user/customers/useEditCustomers";
+import Loading from "../../../features/common/Loading";
+import Button from "../../../features/common/Button";
+import FileUpload from "../../../features/common/FileUpload";
 
-const CustomersAdd = () => {
-  const { formData, handleChange, handleSubmit, handleCancel, handleImageChange, errors, loading, buttonLoading} = useAddCustomers();
+const CustomersEdit = () => {
+  const { formData, handleChange, handleSubmit, handleCancel, handleImageChange, errors, loading, buttonLoading} = useEditCustomers();
 
   return (
     <div className="content-wrapper">
       <CustomersHeader
-        title={`User`}
+        title={`Customer`}
         icon={`user`}
         showSearch={false} 
         showDropdown={false} 
@@ -23,7 +23,7 @@ const CustomersAdd = () => {
           <div className="card">
             <div className="card-body">
               {loading?< Loading />:
-                <form onSubmit={handleSubmit} className="forms-sample row" autoComplete="off">
+                <form onSubmit={handleSubmit} className="forms-sample row">
                   <FormInput
                       label=""
                       id="id"
@@ -140,13 +140,13 @@ const CustomersAdd = () => {
                       <FileUpload
                         label="Upload Profile Picture"
                         id="image"
+                        value={formData.image_path}
                         accept="image/*"
                         onChange={handleImageChange}
                         error={errors.image}
                       />
                     </div>
                   </div>
-                  
                   <div className="col-12 mt-3">
                     <Button
                         type="submit"
@@ -173,4 +173,4 @@ const CustomersAdd = () => {
   );
 };
 
-export default CustomersAdd;
+export default CustomersEdit;

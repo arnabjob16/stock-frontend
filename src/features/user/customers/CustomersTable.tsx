@@ -1,0 +1,44 @@
+import DataTable from "../../common/DataTable";
+import { Customer } from "../../../types/customers.types";
+
+interface Props {
+  data: Customer[];
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  actions: any[];
+  onPageReset: boolean;
+}
+
+const columns = [
+  { type: "text", key: "name", label: "Name", width: "20%" },
+  { type: "text", key: "username", label: "Username", width: "20%" },
+  { type: "text", key: "email", label: "Email", width: "20%" },
+  { type: "text", key: "phone", label: "Phone", width: "20%" },
+  {
+    type: "status",
+    key: "status",
+    label: "Status",
+    width: "15%",
+    render: (item: any) => (
+      <span className={`badge text-capitalize ${item.status === "active" ? "bg-success" : "bg-danger"}`}>
+        {item.status}
+      </span>
+    ),
+  },
+];
+
+const CustomersTable: React.FC<Props> = ({ data, totalPages, onPageChange, actions, onPageReset }) => {
+  return (
+    <DataTable
+      data={data}
+      columns={columns}
+      checkbox={true}
+      actions={actions}
+      totalPages={totalPages}
+      onPageChange={onPageChange}
+      onPageReset={onPageReset}
+    />
+  );
+};
+
+export default CustomersTable;

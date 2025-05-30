@@ -1,22 +1,21 @@
-import { useState, useEffect } from "react";
-import { customersDetails, customersEdit } from "../services/userApi";
+import { useState } from "react";
+import { userAdd } from "../../../services/userApi";
 import { toast } from "react-toastify";
-import useAuth from "./useAuth";
-import { useParams, useNavigate  } from "react-router-dom";
-import { validateUserForm } from "../utils/validations/userValidation";
+import useAuth from "../../useAuth";
+import { useNavigate  } from "react-router-dom";
+import { validateUserForm } from "../../../utils/validations/userValidation";
 
-export const useEditCustomers = () => {
+export const useAddSalesmans = () => {
   const navigate = useNavigate(); 
   const { token } = useAuth();
-  const { id } = useParams();
   const [formData, setFormData] = useState({
     id: "",
     name: "",
     email: "",
     password: "",
     username: "",
-    gst_number: "",
     phone: "",
+    roles: "salesman",
     address: "",
     image_path: "",
     image: null as File | null,
@@ -28,35 +27,6 @@ export const useEditCustomers = () => {
   const [buttonLoading, setButtonLoading] = useState(false);
   const [initError, setInitError] = useState(true);
 
-
-  const fetchCustomer = async (id: string) => {
-    setLoading(true);
-    try {
-      const res = await customersDetails(token, id);
-      console.log(res.data.data);
-      if(res.status == "success") {
-        setFormData({
-          id: res.data.data._id,
-          name: res.data.data.name,
-          email: res.data.data.email,
-          password: "",
-          username: res.data.data.username,
-          gst_number: res.data.data.gst_number,
-          phone: res.data.data.phone,
-          address: res.data.data.address,
-          image_path: res.data.data.image,
-          image: null as File | null,
-          status: res.data.data.status,
-        });
-      }
-      else{
-        toast.error(res.data.message);
-      }
-    } catch (err) {
-      toast.error("Failed to fetch users!");
-    }
-    setLoading(false);
-  };
 
   const handleCancel = () => {
     navigate(-1);
@@ -74,13 +44,14 @@ export const useEditCustomers = () => {
     e.preventDefault();
     setButtonLoading(true);
     setInitError(false);
-
+  
     const newErrors = validateUserForm(formData);
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       setButtonLoading(false);
       return;
     }
+  
     const form = new FormData();
   
     Object.entries(formData).forEach(([key, value]) => {
@@ -92,11 +63,11 @@ export const useEditCustomers = () => {
         }
       }
     });
+  
     try {
-      const res = await customersEdit(token, form);
+      const res = await userAdd(token, form);
       if(res.status == "success") {
         toast.success(res.data.message);
-        setButtonLoading(false);
         navigate(-1);
       }
       else if(res.status == "info") {
@@ -112,12 +83,6 @@ export const useEditCustomers = () => {
     }
   };
 
-  useEffect(() => {
-    if (token && id) {
-      fetchCustomer(id);
-    }
-  }, [token, id]);
-
   const handleImageChange = (file: File | null) => {
     setFormData((prev) => ({
       ...prev,
@@ -128,6 +93,7 @@ export const useEditCustomers = () => {
       setErrors(newErrors);
     }
   };
+  
 
   return { formData, handleChange, handleSubmit, handleCancel, handleImageChange, errors, loading, buttonLoading };
 };

@@ -1,6 +1,6 @@
-import HeaderTitle from "../common/HeaderTitle";
-import HeaderSearch from "../common/HeaderSearch";
-import HeaderDropdown from "../common/HeaderDropdown";
+import HeaderTitle from "../../common/HeaderTitle";
+import HeaderSearch from "../../common/HeaderSearch";
+import HeaderDropdown from "../../common/HeaderDropdown";
 import { useNavigate } from "react-router-dom";
 
 
@@ -14,7 +14,7 @@ interface Props {
   onSearchSubmit?: () => void;
 }
 
-const CustomersHeader: React.FC<Props> = ({ searchField = "", title = "", icon = "", showSearch = true,  showDropdown = true,onSearchChange, onSearchSubmit }) => {
+const SuppliersHeader: React.FC<Props> = ({ searchField = "", title = "", icon = "", showSearch = true,  showDropdown = true,onSearchChange, onSearchSubmit }) => {
   const navigate = useNavigate();
   return (
     <div className="row">
@@ -33,10 +33,7 @@ const CustomersHeader: React.FC<Props> = ({ searchField = "", title = "", icon =
           {showDropdown && (
             <HeaderDropdown
               data={[
-                { label: "Create", onClick: () => navigate(`/customers/add`) },
-                { label: "Import", onClick: () => navigate(`/customers/add`) },
-                { label: "Export (Excel)", onClick: () => navigate(`/customers/add`)},
-                { label: "Export (PDF)", onClick: () => navigate(`/customers/add`) },
+                { label: "Create", onClick: () => navigate(`/suppliers/add`) },
               ]}
             />
           )}
@@ -46,4 +43,4 @@ const CustomersHeader: React.FC<Props> = ({ searchField = "", title = "", icon =
   );
 };
 
-export default CustomersHeader;
+export default SuppliersHeader;

@@ -1,8 +1,8 @@
-import DataTable from "../common/DataTable";
-import { Customer } from "../../types/customers.types";
+import DataTable from "../../common/DataTable";
+import { User } from "../../../types/users.types";
 
 interface Props {
-  data: Customer[];
+  data: User[];
   totalPages: number;
   onPageChange: (page: number) => void;
   actions: any[];
@@ -20,14 +20,14 @@ const columns = [
     label: "Status",
     width: "15%",
     render: (item: any) => (
-      <span className={`badge ${item.status === "active" ? "bg-success" : "bg-danger"}`}>
+      <span className={`badge text-capitalize ${item.status === "active" ? "bg-success" : "bg-danger"}`}>
         {item.status}
       </span>
     ),
   },
 ];
 
-const CustomersTable: React.FC<Props> = ({ data, totalPages, onPageChange, actions, onPageReset }) => {
+const SalesmansTable: React.FC<Props> = ({ data, totalPages, onPageChange, actions, onPageReset }) => {
   return (
     <DataTable
       data={data}
@@ -41,4 +41,4 @@ const CustomersTable: React.FC<Props> = ({ data, totalPages, onPageChange, actio
   );
 };
 
-export default CustomersTable;
+export default SalesmansTable;

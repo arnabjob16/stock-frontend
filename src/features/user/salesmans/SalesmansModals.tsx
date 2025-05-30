@@ -1,6 +1,6 @@
-import Modal from "../common/Modal";
-import ConfirmModal from "../common/ConfirmModal";
-import { ModalDataType, ModalConfirmDataType } from "../../types/customers.types";
+import Modal from "../../common/Modal";
+import ConfirmModal from "../../common/ConfirmModal";
+import { ModalDataType, ModalConfirmDataType } from "../../../types/users.types";
 
 interface Props {
   modalData: ModalDataType;
@@ -12,7 +12,7 @@ interface Props {
   onCloseConfirm: () => void;
 }
 
-const CustomersModals: React.FC<Props> = ({
+const SalesmansModals: React.FC<Props> = ({
   modalData,
   modalConfirmData,
   modalVisible,
@@ -42,4 +42,4 @@ const CustomersModals: React.FC<Props> = ({
   );
 };
 
-export default CustomersModals;
+export default SalesmansModals;

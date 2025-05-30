@@ -13152,7 +13152,19 @@ textarea.is-invalid.tt-hint, .select2-container--default .select2-selection--sin
   padding-left: 0;
   list-style: none;
 }
-
+.pagination li {
+  line-height: 1.2;
+}
+.pagination li button {
+  border: 0px;
+  background-color: #fff !important;
+  color: #000000;
+}
+.pagination li.active button {
+  color : #b66dff;
+  border: 3px solid #b66dff;
+  border-radius: 0.3125rem;
+}
 .page-link {
   position: relative;
   display: block;
@@ -13180,7 +13192,6 @@ textarea.is-invalid.tt-hint, .select2-container--default .select2-selection--sin
   color: var(--bs-pagination-focus-color);
   background-color: var(--bs-pagination-focus-bg);
   outline: 0;
-  box-shadow: var(--bs-pagination-focus-box-shadow);
 }
 .page-link.active, .active > .page-link {
   z-index: 3;
@@ -25179,7 +25190,6 @@ dl li {
 .navbar .navbar-brand-wrapper .navbar-brand img {
   width: calc(260px - 120px);
   max-width: 100%;
-  height: 28px;
   margin: auto;
   vertical-align: middle;
 }

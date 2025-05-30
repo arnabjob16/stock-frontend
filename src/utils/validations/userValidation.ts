@@ -5,7 +5,7 @@ export interface UserFormData {
   email: string;
   password: string;
   username: string;
-  gst_number: string;
+  gst_number?: string;
   phone: string;
   address: string;
   status: string;

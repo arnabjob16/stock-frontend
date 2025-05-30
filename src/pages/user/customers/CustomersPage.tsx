@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CustomersHeader from "../../features/user/CustomersHeader";
-import CustomersTable from "../../features/user/CustomersTable";
-import CustomersModals from "../../features/user/CustomersModals";
-import { useCustomers } from "../../hooks/useCustomers";
-import { ModalDataType, ModalConfirmDataType } from "../../types/customers.types";
-import ViewModal from "../../features/common/ViewModal";
-import Loading from "../../features/common/Loading";
+import CustomersHeader from "../../../features/user/customers/CustomersHeader";
+import CustomersTable from "../../../features/user/customers/CustomersTable";
+import CustomersModals from "../../../features/user/customers/CustomersModals";
+import { useCustomers } from "../../../hooks/user/customers/useCustomers";
+import { ModalDataType, ModalConfirmDataType } from "../../../types/users.types";
+import ViewModal from "../../../features/common/ViewModal";
+import Loading from "../../../features/common/Loading";
 
 const Customers = () => {
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const Customers = () => {
     <div className="content-wrapper">
       <CustomersHeader
         searchField={searchField}
-        title={`User`}
+        title={`Customer`}
         icon={`user`}
         onSearchChange={setSearchField}
         onSearchSubmit={() => fetchCustomers(1, searchField)}
